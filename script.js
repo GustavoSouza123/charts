@@ -1,10 +1,19 @@
-const ctx1 = document.getElementById('myChart1');
-const ctx2 = document.getElementById('myChart2');
-const ctx3 = document.getElementById('myChart3');
-const ctx4 = document.getElementById('myChart4');
+// shortcuts for selecting a DOM element
+const c = (e) => document.querySelector(e);
+const cs = (e) => document.querySelectorAll(e);
+
+// generate canvas for the charts
+for(let i = 1; i <= 5; i++) {
+    document.querySelector('.container').innerHTML += `
+    <div class="chart chart${i}">
+        <p>Chart ${i}:</p>
+        <canvas id="myChart${i}"></canvas>
+    </div>
+    `;
+}
 
 // chart 1
-new Chart(ctx1, {
+new Chart(c('#myChart1'), {
     type: 'bar',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -38,9 +47,9 @@ const data2 = [
     {year: 2014, count: 22},
     {year: 2015, count: 30},
     {year: 2016, count: 28},
-]
+];
 
-new Chart(ctx2, {
+new Chart(c('#myChart2'), {
     type: 'bar',
     data: {
         labels: data2.map(row => row.year),
@@ -68,7 +77,7 @@ new Chart(ctx2, {
 });
 
 // chart 3
-new Chart(ctx3, {
+new Chart(c('#myChart3'), {
     type: 'doughnut',
     data: {
         labels: [
@@ -90,7 +99,7 @@ new Chart(ctx3, {
 });
 
 // chart 4
-new Chart(ctx4, {
+new Chart(c('#myChart4'), {
     type: 'pie',
     data: {
         labels: [
@@ -120,4 +129,18 @@ new Chart(ctx4, {
             }
         }
     }
-})
+});
+
+// chart 5
+new Chart(c('#myChart5'), {
+    type: 'pie',
+    data: {
+        labels: ['Math', 'English', 'Science', 'History', 'Other'],
+        datasets: [{
+            label: 'Favorite subject',
+            data: [125, 72, 36, 17, 29],
+            hoverOffset: 16,
+            borderWidth: 0
+        }]
+    }
+});
