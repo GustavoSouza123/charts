@@ -37,3 +37,7 @@ body {
 .chart p {
     font-weight: 600;
 }
+
+.chart canvas {
+    max-height: 450px;
+}
