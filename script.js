@@ -3,8 +3,8 @@ const c = (e) => document.querySelector(e);
 const cs = (e) => document.querySelectorAll(e);
 
 // generate charts
-let chartsNum = 7;
-for(let i = 1; i <= chartsNum; i++) {
+let chartsNum = 9;
+for(let i = 0; i < chartsNum; i++) {
     document.querySelector('.container').innerHTML += `
     <div class="chart chart${i}">
         <p>Chart ${i}:</p>
@@ -13,13 +13,70 @@ for(let i = 1; i <= chartsNum; i++) {
     `;
 }
 
-// chart 1
+// get 'periodo' and 'curso' values from cookies
+let cookies = document.cookie.split('; ');
+// console.log(cookies);
+let element;
+for(let i = 0; i < cookies.length; i++) {
+    element = cookies[i].split('=');
+    if(element[0] == 'periodo') {
+        var periodo = element[1].split('%2C');
+    } else if(element[0] == 'curso') {
+        var curso = element[1].split('%2C');
+    }
+}
+
+// chart 0 (periodo)
+new Chart(c('#myChart0'), {
+    type: 'pie',
+    data: {
+        labels: ['Manhã', 'Tarde', 'Noite'],
+        datasets: [{
+            label: 'Período',
+            data: periodo,
+            hoverOffset: 8,
+            borderWidth: 0
+        }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Período'
+            }
+        }
+    }
+});
+
+// chart 1 (curso)
+new Chart(c('#myChart1'), {
+    type: 'pie',
+    data: {
+        labels: ['Desenvolvimento de sistemas', 'Meio ambiente', 'Nutrição', 'Administração', 'Segurança', 'Eletrônica'],
+        datasets: [{
+            label: 'Curso',
+            data: curso,
+            hoverOffset: 8,
+            borderWidth: 0
+        }]
+    },
+    options: {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Curso'
+            }
+        }
+    }
+});
+
+// chart 2
 let randomDataChart1 = [];
 for(i = 0; i < 6; i++) {
     randomDataChart1.push(Math.floor(Math.random() * 20));
 }
 
-new Chart(c('#myChart1'), {
+new Chart(c('#myChart2'), {
     type: 'bar',
     data: {
         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
@@ -44,7 +101,7 @@ new Chart(c('#myChart1'), {
     }
 });
 
-// chart 2
+// chart 3
 const data2 = [
     {year: 2010, count: 10},
     {year: 2011, count: 20},
@@ -55,7 +112,7 @@ const data2 = [
     {year: 2016, count: 28},
 ];
 
-new Chart(c('#myChart2'), {
+new Chart(c('#myChart3'), {
     type: 'bar',
     data: {
         labels: data2.map(row => row.year),
@@ -82,8 +139,8 @@ new Chart(c('#myChart2'), {
     }
 });
 
-// chart 3
-new Chart(c('#myChart3'), {
+// chart 4
+new Chart(c('#myChart4'), {
     type: 'doughnut',
     data: {
         labels: [
@@ -104,8 +161,8 @@ new Chart(c('#myChart3'), {
     }
 });
 
-// chart 4
-new Chart(c('#myChart4'), {
+// chart 5
+new Chart(c('#myChart5'), {
     type: 'pie',
     data: {
         labels: [
@@ -137,8 +194,8 @@ new Chart(c('#myChart4'), {
     }
 });
 
-// chart 5
-new Chart(c('#myChart5'), {
+// chart 6
+new Chart(c('#myChart6'), {
     type: 'pie',
     data: {
         labels: ['Math', 'English', 'Science', 'History', 'Other'],
@@ -159,8 +216,8 @@ new Chart(c('#myChart5'), {
     }
 });
 
-// chart 6
-new Chart(c('#myChart6'), {
+// chart 7
+new Chart(c('#myChart7'), {
     type: 'line',
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
@@ -177,7 +234,7 @@ new Chart(c('#myChart6'), {
     }
 })
 
-// chart 7
+// chart 8
 let randomData = {dataset1: [], dataset2: [], dataset3: []};
 for(let j = 0; j < 7; j++) {
     randomData.dataset1.push(Math.floor(Math.random() * 100));
@@ -185,7 +242,7 @@ for(let j = 0; j < 7; j++) {
     randomData.dataset3.push(Math.floor(Math.random() * 100));
 }
 
-new Chart(c('#myChart7'), {
+new Chart(c('#myChart8'), {
     type: 'line',
     data: {
         labels: [2017, 2018, 2019, 2020, 2021, 2022, 2023],
